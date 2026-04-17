@@ -1,94 +1,120 @@
+import { Leaf, Info, ShieldCheck, Heart } from "lucide-react";
 import type { BiodiversityInfo } from "@/lib/gemini";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { TreePine, Info, ShieldCheck, Leaf } from "lucide-react";
 
 interface AnalysisResultProps {
   data: BiodiversityInfo;
 }
 
-const statusColors = {
-  "Least Concern": "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
-  "Near Threatened": "bg-yellow-500/10 text-yellow-600 border-yellow-500/20",
-  "Vulnerable": "bg-orange-500/10 text-orange-600 border-orange-500/20",
-  "Endangered": "bg-red-500/10 text-red-600 border-red-500/20",
-  "Critically Endangered": "bg-red-700/10 text-red-700 border-red-700/20",
-  "Extinct": "bg-gray-500/10 text-gray-600 border-gray-500/20",
-  "Unknown": "bg-muted text-muted-foreground border-transparent",
+const statusColors: Record<BiodiversityInfo["conservationStatus"], string> = {
+  "Least Concern": "bg-emerald-500/10 text-emerald-700 border-emerald-500/20",
+  "Near Threatened": "bg-amber-500/10 text-amber-700 border-amber-500/20",
+  "Vulnerable": "bg-orange-500/10 text-orange-700 border-orange-500/20",
+  "Endangered": "bg-red-500/10 text-red-700 border-red-500/20",
+  "Critically Endangered": "bg-red-600/20 text-red-800 border-red-600/30",
+  "Extinct": "bg-slate-500/10 text-slate-700 border-slate-500/20",
+  "Unknown": "bg-slate-200 text-slate-600 border-slate-300",
 };
 
 export function AnalysisResult({ data }: AnalysisResultProps) {
   return (
-    <div className="grid gap-6 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-      <div className="flex flex-col md:flex-row gap-6 items-start">
-        <Card className="flex-1 overflow-hidden border-none bg-gradient-to-br from-primary/5 to-transparent shadow-none">
-          <CardHeader className="pb-2">
-            <div className="flex items-center justify-between mb-2">
-              <Badge variant="outline" className={statusColors[data.conservationStatus] || statusColors.Unknown}>
-                {data.conservationStatus}
+    <div className="w-full space-y-8 animate-in fade-in duration-1000">
+      {/* Primary Identification Card */}
+      <div className="specimen-card rounded-4xl p-8 md:p-12 relative overflow-hidden">
+        {/* Specimen Stamp */}
+        <div className="absolute top-6 right-6 px-3 py-1 border-2 border-primary/20 text-primary/20 font-mono text-[10px] rounded uppercase tracking-[0.3em] rotate-12 pointer-events-none select-none">
+          Verified Specimen
+        </div>
+
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-8">
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-[0.2em] text-xs">
+              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              Positive Identification
+            </div>
+            <div>
+              <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest mb-1">
+                ID: {data.id}
+              </div>
+              <h2 className="text-4xl md:text-6xl font-bold mb-2 tracking-tight">{data.name}</h2>
+              <p className="text-xl italic text-muted-foreground font-serif opacity-80">
+                {data.scientificName} • {data.family}
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Badge 
+                variant="outline" 
+                className={`px-4 py-1.5 rounded-full text-sm font-bold border-2 ${statusColors[data.conservationStatus]} shadow-sm`}
+              >
+                {data.conservationStatus.toUpperCase()}
               </Badge>
-              <span className="text-xs font-medium text-muted-foreground italic uppercase tracking-wider">
-                {data.family}
-              </span>
             </div>
-            <CardTitle className="text-4xl font-bold text-primary tracking-tight">
-              {data.name}
-            </CardTitle>
-            <CardDescription className="text-xl font-medium italic text-muted-foreground">
-              {data.scientificName}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="pt-4">
-            <div className="flex gap-3 items-start p-4 rounded-2xl bg-white/50 dark:bg-black/20 border border-white/50 backdrop-blur-sm">
-              <div className="p-2 rounded-xl bg-primary/10">
-                <TreePine className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <h4 className="font-semibold text-sm mb-1 uppercase tracking-wider text-muted-foreground">Ecological Role</h4>
-                <p className="leading-relaxed">{data.ecologicalRole}</p>
-              </div>
+          </div>
+          
+          <div className="md:w-1/3 p-6 rounded-3xl bg-primary/3 border border-primary/10 space-y-4">
+            <div className="flex items-center gap-2 text-primary font-bold text-sm">
+              <ShieldCheck className="w-4 h-4" />
+              Ecological Role
             </div>
-          </CardContent>
-        </Card>
+            <p className="text-sm leading-relaxed text-muted-foreground italic font-medium">
+              "{data.ecologicalRole}"
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-4">
-        <Card className="border-none bg-card shadow-lg shadow-black/5 rounded-3xl overflow-hidden group hover:shadow-primary/5 transition-all">
-          <CardHeader className="flex flex-row items-center gap-3 pb-2 space-y-0">
-            <div className="p-2 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
-              <ShieldCheck className="w-5 h-5 text-primary" />
-            </div>
-            <CardTitle className="text-lg">Conservation</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-3">
-              {data.protectionTips.map((tip, i) => (
-                <li key={i} className="flex gap-3 text-sm leading-relaxed group/item">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0 group-hover/item:scale-150 transition-transform" />
-                  {tip}
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-
-        <Card className="border-none bg-primary text-primary-foreground shadow-lg shadow-primary/20 rounded-3xl overflow-hidden relative group">
-          <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-700">
-            <Leaf className="w-32 h-32" />
-          </div>
-          <CardHeader className="relative z-10">
-            <CardTitle className="flex items-center gap-2">
+      {/* Details Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="specimen-card rounded-4xl p-8">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-2 rounded-xl bg-primary/10 text-primary">
               <Info className="w-5 h-5" />
-              Earth Day Tip
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="relative z-10">
-            <p className="text-lg font-medium leading-relaxed opacity-90">
-              By caring for one species, you protect the entire web of life that sustains our planet. 
-              Your discovery today is a testament to how close nature is to all of us.
-            </p>
-          </CardContent>
-        </Card>
+            </div>
+            <h3 className="text-xl font-bold">Scientific Context</h3>
+          </div>
+          <dl className="space-y-4">
+            <div className="flex justify-between items-center border-b border-border pb-3">
+              <dt className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Family</dt>
+              <dd className="font-serif font-medium">{data.family}</dd>
+            </div>
+            <div className="flex justify-between items-center border-b border-border pb-3">
+              <dt className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Genus/Species</dt>
+              <dd className="font-serif font-medium italic">{data.scientificName.split(' ')[0]}</dd>
+            </div>
+            <div className="flex justify-between items-center">
+              <dt className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Status</dt>
+              <dd className="font-medium">{data.conservationStatus}</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div className="specimen-card rounded-4xl p-8">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-2 rounded-xl bg-red-500/10 text-red-600">
+              <Heart className="w-5 h-5" />
+            </div>
+            <h3 className="text-xl font-bold">How to Protect</h3>
+          </div>
+          <ul className="space-y-4">
+            {data.protectionTips.map((tip, index) => (
+              <li key={index} className="flex gap-4 items-start">
+                <div className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">
+                  {index + 1}
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">{tip}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* Conservation Footnote */}
+      <div className="text-center p-8 border border-border border-dashed rounded-4xl bg-muted/20">
+        <Leaf className="w-8 h-8 text-primary/30 mx-auto mb-4" />
+        <p className="text-sm text-muted-foreground max-w-lg mx-auto italic">
+          Knowing our biodiversity is the first step toward protecting it. 
+          Use this identification as a starting point for deeper research into your local ecosystem.
+        </p>
       </div>
     </div>
   );

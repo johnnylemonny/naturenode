@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
 
 export interface BiodiversityInfo {
+  id?: string;
   name: string;
   scientificName: string;
   family: string;

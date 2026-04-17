@@ -5,15 +5,15 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.2-38bdf8)](https://tailwindcss.com/)
 [![Gemini API](https://img.shields.io/badge/Gemini%20API-3%20Flash%20Preview-orange)](https://ai.google.dev/)
 
-**NatureNode** is a modern web application built for the DEV.to Weekend Challenge in celebration of Earth Day. It harnesses the power of the **Google Gemini API** to help users identify flora and fauna while learning how to protect our shared environment.
+**NatureNode** is a premium botanical identification platform built for the DEV.to Weekend Challenge. It combines advanced AI with a "Botanical Precision" aesthetic to transform photos into detailed ecological field notes, promoting environmental awareness.
 
 ## 🌟 Key Features
 
-- **Instant Identification**: Uses the cutting-edge **Gemini 3 Flash (Preview)** model to recognize plants, animals, insects, and fungi from photos.
-- **Ecological Insights**: Provides detailed information about the species family, conservation status (IUCN), and ecological role.
+- **Botanical Precision Design**: A centered, balanced layout with OKLCH color system, professional typography (Zilla Slab), and paper-like textures.
+- **Instant Identification**: Uses the cutting-edge **Gemini 3 Flash (Preview)** model to recognize flora and fauna from photos.
+- **Ecological Field Notes**: Detailed insights into conservation status (IUCN), ecological roles, and family classification.
 - **Actionable Conservation**: Recommends 3 specific steps you can take to protect the identified species or its habitat.
 - **Privacy First (BYOK)**: "Bring Your Own Key" strategy – your API key is stored only locally in your browser.
-- **Nature-Inspired Design**: Aesthetic, responsive "Earth Day" themed interface built with Tailwind CSS v4 and shadcn/ui.
 
 ## 🛠️ Tech Stack
 
