@@ -35,14 +35,21 @@ export function SpecimenJournal({ history, onSelect }: SpecimenJournalProps) {
             <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest mb-1">
               ID: {specimen.id}
             </div>
-            <h3 className="text-lg font-bold mb-1 group-hover:text-primary transition-colors">{specimen.name}</h3>
+            <h3 className="text-lg font-bold mb-1 group-hover:text-primary transition-colors">{specimen.commonName}</h3>
             <p className="text-xs italic text-muted-foreground font-serif mb-4 line-clamp-1 opacity-80">
               {specimen.scientificName}
             </p>
             
-            <div className="flex items-center gap-1.5 mt-auto text-[10px] font-bold uppercase tracking-wider text-primary/70">
-              <Leaf className="w-3 h-3" />
-              {specimen.family}
+            <div className="flex flex-wrap gap-3 items-center mt-auto">
+              <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-primary/70">
+                <Leaf className="w-3 h-3" />
+                {specimen.family}
+              </div>
+              {specimen.locationTag?.placeName && (
+                <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider bg-muted/50 px-2 py-0.5 rounded-md truncate max-w-[120px]">
+                  {specimen.locationTag.placeName}
+                </div>
+              )}
             </div>
           </button>
         ))}

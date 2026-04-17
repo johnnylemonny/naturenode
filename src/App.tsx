@@ -40,17 +40,14 @@ function App() {
 
     try {
       const data = await analyzeImage(file, apiKey);
-      // Generate a stable ID for the specimen
-      data.id = Math.random().toString(36).substring(2, 8).toUpperCase();
       
+      data.id = Math.random().toString(36).substring(2, 8).toUpperCase();
       setResult(data);
       
-      // Update history
-      const newHistory = [data, ...history].slice(0, 20); // Keep last 20
+      const newHistory = [data, ...history].slice(0, 20);
       setHistory(newHistory);
       localStorage.setItem("naturenode_history", JSON.stringify(newHistory));
 
-      // Smooth scroll to results
       setTimeout(() => {
         document.getElementById("results")?.scrollIntoView({ behavior: "smooth" });
       }, 100);
@@ -59,14 +56,26 @@ function App() {
       let errorMessage = err instanceof Error ? err.message : String(err);
       
       if (errorMessage.includes("429") || errorMessage.includes("quota") || errorMessage.includes("limit")) {
-        errorMessage = "API Quota exceeded or limit reached (429). Please wait a moment or check your API plan at Google AI Studio.";
+        errorMessage = "API Quota exceeded or limit reached (429). Please wait a moment.";
       } else if (errorMessage.includes("404")) {
-        errorMessage = "Model not found (404). This might be due to regional restrictions or model deprecation.";
+        errorMessage = "Model not found (404). Regional restrictions might apply.";
       }
       
       setError(errorMessage);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleLocationUpdate = (id: string, placeName: string) => {
+    const newHistory = history.map(item => 
+      item.id === id ? { ...item, locationTag: { lat: 0, lng: 0, placeName } } : item
+    );
+    setHistory(newHistory);
+    localStorage.setItem("naturenode_history", JSON.stringify(newHistory));
+    
+    if (result?.id === id) {
+      setResult({ ...result, locationTag: { lat: 0, lng: 0, placeName } });
     }
   };
 
@@ -169,7 +178,11 @@ function App() {
 
             {result && (
               <section id="results" className="w-full scroll-mt-24 animate-in fade-in duration-1000">
-                <AnalysisResult data={result} />
+                <AnalysisResult 
+                  key={result.id} 
+                  data={result} 
+                  onLocationUpdate={handleLocationUpdate} 
+                />
                 <div className="mt-16 text-center">
                   <Button 
                     variant="outline" 

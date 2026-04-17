@@ -2,28 +2,41 @@ import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
 
 export interface BiodiversityInfo {
   id?: string;
-  name: string;
+  commonName: string;
   scientificName: string;
   family: string;
-  conservationStatus: "Least Concern" | "Near Threatened" | "Vulnerable" | "Endangered" | "Critically Endangered" | "Extinct" | "Unknown";
+  genus: string;
+  species: string;
+  conservationStatus: string;
   ecologicalRole: string;
+  habitat: string;
+  nativeRange: string;
   protectionTips: string[];
+  locationTag?: {
+    lat: number;
+    lng: number;
+    placeName?: string;
+  };
 }
 
 const responseSchema = {
   type: SchemaType.OBJECT,
   properties: {
-    name: { type: SchemaType.STRING },
+    commonName: { type: SchemaType.STRING },
     scientificName: { type: SchemaType.STRING },
     family: { type: SchemaType.STRING },
+    genus: { type: SchemaType.STRING },
+    species: { type: SchemaType.STRING },
     conservationStatus: { type: SchemaType.STRING },
     ecologicalRole: { type: SchemaType.STRING },
+    habitat: { type: SchemaType.STRING },
+    nativeRange: { type: SchemaType.STRING },
     protectionTips: {
       type: SchemaType.ARRAY,
       items: { type: SchemaType.STRING }
     }
   },
-  required: ["name", "scientificName", "family", "conservationStatus", "ecologicalRole", "protectionTips"]
+  required: ["commonName", "scientificName", "family", "genus", "species", "conservationStatus", "ecologicalRole", "habitat", "nativeRange", "protectionTips"]
 };
 
 export async function analyzeImage(file: File, apiKey: string): Promise<BiodiversityInfo> {
