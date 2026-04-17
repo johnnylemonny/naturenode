@@ -1,8 +1,8 @@
 # 🌿 NatureNode
 
 [![React](https://img.shields.io/badge/React-19-blue)](https://react.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38bdf8)](https://tailwindcss.com/)
-[![Gemini API](https://img.shields.io/badge/Gemini%20API-3.0%20Flash-orange)](https://ai.google.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8)](https://tailwindcss.com/)
+[![Gemini API](https://img.shields.io/badge/Gemini%20API-3%20Flash-orange)](https://ai.google.dev/)
 [![PWA](https://img.shields.io/badge/PWA-Ready-green)](https://vite-pwa-org.netlify.app/)
 
 **NatureNode** is a professional biodiversity research and identification tool. Designed for field researchers and nature enthusiasts, it leverages state-of-the-art AI to transform simple photos into comprehensive ecological dossiers.
