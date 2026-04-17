@@ -30,7 +30,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_JAVASCRIPT: true
           VALIDATE_TYPESCRIPT_ESLINT: true
-          VALIDATE_CSS: false
           VALIDATE_HTML: true
           VALIDATE_JSON: true
-          VALIDATE_MARKDOWN: false
