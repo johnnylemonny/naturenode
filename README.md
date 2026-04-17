@@ -56,4 +56,4 @@ NatureNode was built to foster a deeper connection between technology and the na
 MIT
 
 ---
-*Developed with ❤️ by [Janek](https://github.com/johnnylemonny).*
+*Developed with ❤️ by [John](https://github.com/johnnylemonny).*
