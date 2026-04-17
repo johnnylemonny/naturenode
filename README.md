@@ -10,12 +10,27 @@
 ## 📱 Interface Showcase
 
 <div align="center">
-  <img src="photos/desktop1.webp" width="100%" alt="NatureNode Desktop Preview" />
+  <img src="photos/desktop1.webp" width="100%" alt="NatureNode Landing Page" />
   <br />
-  <img src="photos/mobile1.webp" height="400" alt="Mobile Identification" />
-  &nbsp;&nbsp;
-  <img src="photos/mobile2.webp" height="400" alt="Analysis Results" />
+  <img src="photos/mobile1.webp" width="48%" alt="Mobile Research Interface" />
+  <img src="photos/mobile2.webp" width="48%" alt="AI Analysis Results" />
 </div>
+
+<details>
+  <summary>🔍 View Full-Page Research Dossiers & More</summary>
+  <br />
+  <div align="center">
+    <p><i>Below are full-length captures of the research process and results.</i></p>
+    <h4>Desktop Specimen Analysis</h4>
+    <img src="photos/desktop3.webp" width="100%" alt="Full Desktop Analysis" />
+    <br />
+    <h4>Mobile Specimen Journal</h4>
+    <img src="photos/mobile3.webp" width="60%" alt="Full Mobile Specimen History" />
+    <br />
+    <h4>Identification Setup</h4>
+    <img src="photos/desktop2.webp" width="100%" alt="Identification Interface" />
+  </div>
+</details>
 
 ## 🌟 Key Features
 
