@@ -10,11 +10,11 @@
 ## 📱 Interface Showcase
 
 <div align="center">
-  <img src="photos/desktop3.webp" width="100%" alt="NatureNode Desktop Preview" />
+  <img src="photos/desktop1.webp" width="100%" alt="NatureNode Desktop Preview" />
   <br />
-  <img src="photos/mobile1.webp" width="32%" alt="Mobile Identification" />
-  <img src="photos/mobile2.webp" width="32%" alt="Analysis Results" />
-  <img src="photos/mobile3.webp" width="32%" alt="Specimen Journal" />
+  <img src="photos/mobile1.webp" height="400" alt="Mobile Identification" />
+  &nbsp;&nbsp;
+  <img src="photos/mobile2.webp" height="400" alt="Analysis Results" />
 </div>
 
 ## 🌟 Key Features
